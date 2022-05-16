@@ -1,0 +1,4 @@
+- hosts: homelab
+  tasks:
+    - name: ping vorel
+      ping:
