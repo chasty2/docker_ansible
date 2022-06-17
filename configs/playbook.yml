@@ -1,3 +1,4 @@
+# example playbook
 - hosts: homelab
   tasks:
     - name: ping vorel
