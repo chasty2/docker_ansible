@@ -46,7 +46,13 @@ ENV ANSIBLE_HOST_KEY_CHECKING false
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_RETRY_FILES_ENABLED false
 
-# Set 'entrypoint.sh' as the default entrypoint
-COPY ./entrypoint.sh /entrypoint.sh
+# Switch back to root user
+USER root
 
+# Set entrypoint. I have also commented this out, to be set downstream
+
+# Set 'entrypoint.sh' as the default entrypoint
+#COPY ./entrypoint.sh /entrypoint.sh
+
+# Or declare a playbook as the default entrypoint
 #ENTRYPOINT ["ansible-playbook","playbook.yml"]
