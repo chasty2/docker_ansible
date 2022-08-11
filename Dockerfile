@@ -49,10 +49,6 @@ ENV ANSIBLE_RETRY_FILES_ENABLED false
 # Switch back to root user
 USER root
 
-# Set entrypoint. I have also commented this out, to be set downstream
-
-# Set 'entrypoint.sh' as the default entrypoint
+# Set 'entrypoint.sh' as the default entrypoint. I have also commented this out, to be set downstream
 #COPY ./entrypoint.sh /entrypoint.sh
-
-# Or declare a playbook as the default entrypoint
-#ENTRYPOINT ["ansible-playbook","playbook.yml"]
+#ENTRYPOINT["bash","/entrypoint.sh"]
