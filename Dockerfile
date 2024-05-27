@@ -1,7 +1,7 @@
 FROM docker.io/alpine:3.20.0
 
-ENV ANSIBLE_VERSION=9.6.0
-ENV ANSIBLE_LINT_VERSION=24.5.0
+ENV ANSIBLE_VERSION=9.5.1-r0
+ENV ANSIBLE_LINT_VERSION=24.5.0-r0
 
 # Install dependencies
 RUN apk update \
@@ -9,7 +9,11 @@ RUN apk update \
   ca-certificates git openssh sshpass \
   && apk --update add --virtual build-dependencies \
   python3-dev py3-pip libffi-dev openssl-dev build-base bash \
-  && rm -rf /var/cache/apk/* 
+  && rm -rf /var/cache/apk/*
+
+# Install Ansible
+RUN apk add ansible=${ANSIBLE_VERSION} \
+  && apk add ansible-lint=${ANSIBLE_LINT_VERSION}
 
 # Create ansible user and SSH key directory
 RUN addgroup -S ansible && adduser -S ansible -G ansible \
@@ -35,11 +39,6 @@ USER ansible
 
 # Add ansible users local/bin to PATH
 ENV PATH="$PATH:/home/ansible/.local/bin"
-
-# Upgrade pip3 and install ansible
-RUN pip3 install --upgrade pip --break-system-packages \
-  && pip3 install ansible==${ANSIBLE_VERSION} --break-system-packages \
-  && pip3 install ansible-lint==${ANSIBLE_LINT_VERSION} --break-system-packages
 
 # Set ansible environment variables
 ENV ANSIBLE_HOST_KEY_CHECKING false
