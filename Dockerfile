@@ -38,8 +38,8 @@ ENV PATH="$PATH:/home/ansible/.local/bin"
 
 # Upgrade pip3 and install ansible
 RUN pip3 install --upgrade pip \
-  && pip3 install ansible==${ANSIBLE_VERSION} \
-  && pip3 install ansible-lint==${ANSIBLE_LINT_VERSION}
+  && pip3 install ansible==${ANSIBLE_VERSION} --break-system-packages\
+  && pip3 install ansible-lint==${ANSIBLE_LINT_VERSION} --break-system-packages
 
 # Set ansible environment variables
 ENV ANSIBLE_HOST_KEY_CHECKING false
