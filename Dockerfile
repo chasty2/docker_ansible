@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.15
+FROM docker.io/alpine:3.20.0
 
 ENV ANSIBLE_VERSION=9.6.0
 ENV ANSIBLE_LINT_VERSION=24.5.0
