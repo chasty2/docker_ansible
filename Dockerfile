@@ -1,7 +1,7 @@
 FROM docker.io/alpine:3.15
 
-ENV ANSIBLE_VERSION=5.1.0
-ENV ANSIBLE_LINT_VERSION=5.3.1
+ENV ANSIBLE_VERSION=9.6.0
+ENV ANSIBLE_LINT_VERSION=24.5.0
 
 # Install dependencies
 RUN apk update \
