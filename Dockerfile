@@ -44,6 +44,7 @@ ENV PATH="$PATH:/home/ansible/.local/bin"
 ENV ANSIBLE_HOST_KEY_CHECKING false
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_RETRY_FILES_ENABLED false
+ENV INTERPRETER_PYTHON auto_silent
 
 # Switch back to root user
 USER root
