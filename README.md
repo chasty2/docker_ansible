@@ -1,5 +1,5 @@
 # Development Container
-Utilize the docker image chasty2/ansible for development. Essentially just a homebrew Execution Environment. It uses SSH, host networking, and the user 'ansible' to run playbooks from a  directory that is bind-mounted to the container
+Utilize a custom docker image for development. Essentially just a homebrew Execution Environment. It uses SSH, host networking, and the user 'ansible' to run playbooks from a  directory that is bind-mounted to the container
 
 ## Dependencies
 - A folder 'ssh-keys' with the public/private key the ansible user will use
