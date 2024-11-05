@@ -44,3 +44,6 @@ ENV ANSIBLE_PYTHON_INTERPRETER auto_silent
 # Set 'entrypoint.sh' as the default entrypoint
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["bash","/entrypoint.sh"]
+
+# Update podman collection (fix: nfs bind mount idempotency)
+RUN ansible-galaxy collection install --upgrade containers.podman
