@@ -1,4 +1,0 @@
-# example hosts file in YAML
-homelab:
-  hosts:
-    192.168.4.33  # vorel
