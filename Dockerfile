@@ -20,19 +20,14 @@ RUN addgroup -S ansible && adduser -S ansible -G ansible \
   && mkdir -p /home/ansible/.ssh && chown ansible:ansible /home/ansible/.ssh \
   && chmod 0700 /home/ansible/.ssh
 
-# I have commented this next part out, as this Dockerfile is intended to build
-# a template image. This template is designed to be used with multiple ansible
-# instances using different SSH keys. These lines should be run AS ROOT in 
-# downstream Dockerfiles
-
 # Copy SSH keys to ansible .ssh directory
-#COPY ./ssh-keys/ansible_rsa /home/ansible/.ssh/id_rsa
-#COPY ./ssh-keys/ansible_rsa.pub /home/ansible/.ssh/id_rsa.pub
+COPY ./ssh-keys/ansible_ed25519 /home/ansible/.ssh/id_ed25519
+COPY ./ssh-keys/ansible_ed25519.pub /home/ansible/.ssh/id_ed25519.pub
 
 # Set SSH key permissions
-#RUN chown ansible:ansible /home/ansible/.ssh/id_rsa* \
-#  && chmod 600 /home/ansible/.ssh/id_rsa \
-#  && chmod 644 /home/ansible/.ssh/id_rsa.pub
+RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519* \
+  && chmod 600 /home/ansible/.ssh/id_ed25519 \
+  && chmod 644 /home/ansible/.ssh/id_ed25519.pub
 
 # Switch to ansible user
 USER ansible
@@ -46,9 +41,6 @@ ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_RETRY_FILES_ENABLED false
 ENV ANSIBLE_PYTHON_INTERPRETER auto_silent
 
-# Switch back to root user
-USER root
-
-# Set 'entrypoint.sh' as the default entrypoint. I have also commented this out, to be set downstream
-#COPY ./entrypoint.sh /entrypoint.sh
-#ENTRYPOINT["bash","/entrypoint.sh"]
+# Set 'entrypoint.sh' as the default entrypoint
+COPY ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["bash","/entrypoint.sh"]
