@@ -23,6 +23,8 @@ RUN addgroup -S ansible && adduser -S ansible -G ansible \
 # Copy SSH keys to ansible .ssh directory
 COPY ./ssh-keys/ansible_ed25519 /home/ansible/.ssh/id_ed25519
 COPY ./ssh-keys/ansible_ed25519.pub /home/ansible/.ssh/id_ed25519.pub
+COPY ./ssh-keys/azure_id_rsa /home/ansible/.ssh/id_rsa
+COPY ./ssh-keys/azure_id_rsa.pub /home/ansible/.ssh/id_rsa.pub
 
 # Set SSH key permissions
 RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519* \
