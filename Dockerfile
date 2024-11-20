@@ -29,7 +29,10 @@ COPY ./ssh-keys/azure_id_rsa.pub /home/ansible/.ssh/id_rsa.pub
 # Set SSH key permissions
 RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519* \
   && chmod 600 /home/ansible/.ssh/id_ed25519 \
-  && chmod 644 /home/ansible/.ssh/id_ed25519.pub
+  && chmod 644 /home/ansible/.ssh/id_ed25519.pub \
+  && chown ansible:ansible /home/ansible/.ssh/id_rsa* \
+  && chmod 600 /home/ansible/.ssh/id_rsa \
+  && chmod 644 /home/ansible/.ssh/id_rsa.pub
 
 # Switch to ansible user
 USER ansible
